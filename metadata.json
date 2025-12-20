@@ -1,0 +1,7 @@
+{
+  "name": "TSC ELV Modernization Proposal",
+  "description": "An interactive, world-class engineering proposal dashboard for CCTV & ELV systems upgrade at The Sustainable City, Dubai.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
