@@ -1,4 +1,3 @@
-
 export interface Issue {
   area: string;
   issue: string;
@@ -13,7 +12,26 @@ export interface AssessmentItem {
   compliance: string;
 }
 
+export interface DetailedFinding {
+  area: string;
+  findings: string[];
+  recommendations: string[];
+}
+
+export interface AccessControlSummary {
+  location: string;
+  status: string;
+  remarks: string;
+}
+
 export interface SolutionItem {
+  subSystem: string;
+  location: string;
+  specs: string;
+  compliance: string;
+}
+
+export interface ToBeSummaryItem {
   subSystem: string;
   location: string;
   specs: string;
@@ -49,4 +67,37 @@ export interface BOQItem {
   description: string;
   unit: string;
   quantity: number;
+  partNumber?: string;
+  warranty?: string;
+  technicalSpecs?: string[];
+}
+
+export interface SiraRequirement {
+  feature: string;
+  requirement: string;
+}
+
+export interface SiraComplianceGrid {
+  area: string;
+  required: string;
+  existing: string;
+  proposed: string;
+}
+
+export interface SiraComplianceMatrixRow {
+  system: string;
+  component: string;
+  status: string;
+  gap: string;
+  action: string;
+  compliance: string;
+}
+
+export interface TechnicalDrawing {
+  id: string;
+  title: string;
+  type: 'As-Built' | 'To-Be' | 'Master Plan' | 'Layout';
+  drawingNo: string;
+  description: string;
+  imageUrl: string;
 }
