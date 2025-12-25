@@ -464,4 +464,4 @@ const App: React.FC = () => {
                           <th className="px-4 py-4 w-48">Current Status</th>
                           <th className="px-4 py-4 w-64">Non-Compliance / Gap</th>
                           <th className="px-4 py-4 w-64">Recommended Action</th>
-                          <th
+                          <th />
