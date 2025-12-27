@@ -7,6 +7,7 @@ export interface Issue {
 
 export interface AssessmentItem {
   area: string;
+  qty: string;
   status: string;
   remarks: string;
   compliance: string;
@@ -20,6 +21,7 @@ export interface DetailedFinding {
 
 export interface AccessControlSummary {
   location: string;
+  qty: string;
   status: string;
   remarks: string;
 }

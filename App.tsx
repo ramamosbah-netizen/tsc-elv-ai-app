@@ -111,9 +111,18 @@ const DrawingModal: React.FC<{ drawing: TechnicalDrawing | null; onClose: () => 
 
 const AIDiagramGenerator: React.FC = () => {
   const examples = [
-    { label: "Centralized VMS Hub", prompt: "A professional architectural diagram of a centralized security VMS hub with multiple monitoring stations, enterprise servers, and 4K displays." },
-    { label: "RAID 6 Storage Cluster", prompt: "Technical cutaway diagram of a high-availability RAID 6 storage server rack with redundant power supplies and enterprise SAS drives." },
-    { label: "Network Integration", prompt: "Logical schematic of a Layer 3 security network integration involving fiber-optic backbone, PoE managed switches, and isolated VLANs for CCTV." }
+    { 
+      label: "Command Center Layout", 
+      prompt: "Technical isometric view of a SIRA-compliant Security Command Center (SCCR-2024). Features a 3x2 55-inch video wall array, dual-monitor operator consoles, ergonomic command chairs, and integrated VMS workstations showing multi-screen security dashboards." 
+    },
+    { 
+      label: "High-Availability Server Rack", 
+      prompt: "Detailed technical schematic of a high-availability ELV server room rack. Includes enterprise NAS/SAN storage arrays configured in RAID 6, redundant PowerEdge servers, 10GbE fiber patch panels, managed Layer 3 core switches, and a rack-mounted 3kVA UPS unit with bypass." 
+    },
+    { 
+      label: "Security Network Backbone", 
+      prompt: "Logical engineering diagram of a smart city security network backbone. Illustrates the fiber optic ring topology connecting multiple cluster NVRs, PoE+ edge switches with 10Gb SFP+ uplinks, and dedicated VLAN segregation for CCTV, Access Control, and ANPR traffic based on STR-NET-2024." 
+    }
   ];
 
   const [prompt, setPrompt] = useState(examples[0].prompt);
@@ -127,7 +136,7 @@ const AIDiagramGenerator: React.FC = () => {
       const response = await ai.models.generateContent({
         model: 'gemini-3-pro-image-preview',
         contents: {
-          parts: [{ text: `${prompt}. Style: technical blueprint, architectural 3D render, dark tech aesthetic, professional, clean lines, high contrast, labeled components.` }]
+          parts: [{ text: `${prompt}. Style: technical engineering blueprint, architectural 3D CAD render, professional ELV system design, dark tech aesthetic, clean lines, high contrast, detailed labeling, 4K resolution.` }]
         },
         config: {
           imageConfig: { aspectRatio: "16:9", imageSize: "1K" }
@@ -161,12 +170,12 @@ const AIDiagramGenerator: React.FC = () => {
               <h4 className="text-2xl font-bold text-white">AI Visualizer</h4>
             </div>
             <p className="text-sm text-slate-400 leading-relaxed mb-6">
-              Use Gemini AI to generate conceptual system diagrams for the proposal. Select an example or enter a custom prompt.
+              Use Gemini AI to generate conceptual system diagrams for the proposal. Select a technical template or enter a detailed custom prompt.
             </p>
           </div>
 
           <div className="space-y-4">
-             <p className="text-[10px] uppercase font-black text-slate-500 tracking-[0.2em]">Quick Examples</p>
+             <p className="text-[10px] uppercase font-black text-slate-500 tracking-[0.2em]">Engineering Templates</p>
              <div className="flex flex-wrap gap-2">
                 {examples.map((ex, i) => (
                   <button 
@@ -186,7 +195,7 @@ const AIDiagramGenerator: React.FC = () => {
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               className="w-full bg-slate-950 border border-slate-800 rounded-2xl p-5 text-sm focus:ring-2 focus:ring-emerald-500 outline-none h-40 resize-none transition-all focus:border-emerald-500/50"
-              placeholder="Describe the system architecture..."
+              placeholder="Describe the technical architecture..."
             />
           </div>
 
@@ -196,7 +205,7 @@ const AIDiagramGenerator: React.FC = () => {
             className="flex items-center gap-3 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white px-8 py-4 rounded-2xl font-black transition-all w-full justify-center shadow-lg shadow-emerald-900/20 active:scale-[0.98]"
           >
             {generating ? <Activity className="animate-spin" size={20} /> : <Sparkles size={20} />}
-            {generating ? 'Visualizing...' : 'Generate Architecture Diagram'}
+            {generating ? 'Synthesizing Architecture...' : 'Generate Engineering Visual'}
           </button>
         </div>
 
@@ -219,7 +228,7 @@ const AIDiagramGenerator: React.FC = () => {
                 <ImageIcon size={40} className="text-slate-700" />
               </div>
               <p className="text-sm text-slate-500 font-mono uppercase tracking-widest max-w-xs mx-auto">
-                {generating ? "Synthesizing Engineering Visual..." : "Architecture canvas awaiting your command"}
+                {generating ? "Computing Engineering Visual..." : "Technical blueprint canvas awaiting parameters"}
               </p>
               {generating && (
                 <div className="mt-8 flex justify-center">
@@ -500,6 +509,7 @@ const App: React.FC = () => {
                       <thead className="bg-slate-950 text-[10px] uppercase tracking-widest text-slate-500">
                         <tr>
                           <th className="px-6 py-4">Area</th>
+                          <th className="px-6 py-4">Qty</th>
                           <th className="px-6 py-4">Status / Observation</th>
                           <th className="px-6 py-4">Remarks</th>
                           <th className="px-6 py-4">Compliance</th>
@@ -509,13 +519,48 @@ const App: React.FC = () => {
                         {ASSESSMENT_SUMMARY.map((item, i) => (
                           <tr key={i} className="hover:bg-slate-800/50 transition-colors group">
                             <td className="px-6 py-4 font-bold text-slate-200">{item.area}</td>
+                            <td className="px-6 py-4 font-mono text-emerald-400">{item.qty}</td>
                             <td className="px-6 py-4 text-slate-400">{item.status}</td>
                             <td className="px-6 py-4 text-slate-500 italic leading-relaxed">{item.remarks}</td>
                             <td className="px-6 py-4">
-                              <span className="px-2 py-1 rounded bg-red-500/10 text-red-500 border border-red-500/20 font-bold uppercase text-[9px]">
+                              <span className={`px-2 py-1 rounded border font-bold uppercase text-[9px] ${
+                                item.compliance === 'Compliant' 
+                                  ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20' 
+                                  : 'bg-red-500/10 text-red-500 border-red-500/20'
+                              }`}>
                                 {item.compliance}
                               </span>
                             </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {assessmentTab === 'acss' && (
+              <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4">
+                <div>
+                  <h4 className="text-xl font-bold mb-6 flex items-center gap-2 text-amber-500"><Lock size={20} /> Access Control Assessment Summary</h4>
+                  <div className="overflow-x-auto rounded-xl border border-slate-800 bg-slate-900/30">
+                    <table className="w-full text-left min-w-[800px]">
+                      <thead className="bg-slate-950 text-[10px] uppercase tracking-widest text-slate-500">
+                        <tr>
+                          <th className="px-6 py-4">Location / Area</th>
+                          <th className="px-6 py-4">Qty</th>
+                          <th className="px-6 py-4">Current Status</th>
+                          <th className="px-6 py-4">Key Non-Compliance / Remarks</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-800 text-xs">
+                        {ACCESS_CONTROL_SUMMARY.map((item, i) => (
+                          <tr key={i} className="hover:bg-slate-800/50 transition-colors group">
+                            <td className="px-6 py-4 font-bold text-slate-200">{item.location}</td>
+                            <td className="px-6 py-4 font-mono text-amber-400">{item.qty}</td>
+                            <td className="px-6 py-4 text-slate-400">{item.status}</td>
+                            <td className="px-6 py-4 text-slate-500 italic leading-relaxed">{item.remarks}</td>
                           </tr>
                         ))}
                       </tbody>

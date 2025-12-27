@@ -144,7 +144,7 @@ export const NETWORK_SIRA_REQUIREMENTS: SiraRequirement[] = [
 ];
 
 export const SIRA_COMPLIANCE_MATRIX: SiraComplianceMatrixRow[] = [
-  { system: "CCTV", component: "Control Room – Video Wall", status: "11 screens 55″ commercial TVs", gap: "Not SIRA-compliant; lacks 24/7 operation, anti-burn-in", action: "Replace with 55 - 75″ SIRA-approved screens; add 3 extra screens", compliance: "Non-compliant" },
+  { system: "CCTV", component: "Control Room – Video Wall", status: "11 screens 55″ commercial TVs", gap: "Not SIRA-compliant; lacks 24/7 operation, anti-burn-in", action: "Replace with 75″ SIRA-approved screens; add 3 extra screens", compliance: "Non-compliant" },
   { system: "CCTV", component: "Operator Workstations", status: "Partial connection to NVRs and motion cameras", gap: "Insufficient monitoring; partial integration", action: "Install dual-monitor workstations; connect all NVRs, motion, and ANPR feeds", compliance: "Non-compliant" },
   { system: "CCTV", component: "NVR Recording & Storage", status: "16–30 days retention, 4.3 TB per NVR, no redundancy", gap: "Below SIRA 90-day retention; no redundancy", action: "Upgrade to centralized NAS/SAN with RAID, retention ≥90 days", compliance: "Non-compliant" },
   { system: "CCTV", component: "Motion Cameras", status: "Partially integrated", gap: "Alerts not centralized; no audit trail", action: "Connect all motion cameras; configure automated alerts and centralized logging", compliance: "Non-compliant" },
@@ -156,28 +156,28 @@ export const SIRA_COMPLIANCE_MATRIX: SiraComplianceMatrixRow[] = [
   { system: "Access Control", component: "Road Main Entrance & Parking", status: "Barrier standalone, not integrated", gap: "No ACSS integration, no RFID, no logging, no safety warnings", action: "Upgrade barriers; integrate with ACSS, RFID, CCTV, centralized logging, safety alerts", compliance: "Non-compliant" },
   { system: "ANPR / Barriers", component: "Main Entrances", status: "Barrier aging; ANPR operational", gap: "Manual operation; partial automation", action: "Replace/repair gates; integrate fully with ANPR, RFID, central VMS; enable centralized logs", compliance: "Non-compliant" },
   { system: "ANPR / Barriers", component: "Secondary / Visitor Entrances", status: "Barriers partially functional; ANPR operational", gap: "Partial automation; no visitor management", action: "Repair/replace barriers; add RFID for residents; QR/OTP for visitors; integrate with VMS", compliance: "Non-compliant" },
-  { system: "ANPR / Barriers", component: "Parking Clusters", status: "Mixed conditions: arms bent/damaged", gap: "Operational delays; maintenance issues; partial compliance", action: "Repair/replace gates; routine maintenance; integrate all ANPR and barrier events with VMS", compliance: "Non-compliant" },
+  { system: "ANPR / Barriers", component: "Parking Clusters", status: "Mixed conditions: arms bent/damaged; flashers not working", gap: "Operational delays; maintenance issues; partial compliance", action: "Repair/replace gates; routine maintenance; integrate all ANPR and barrier events with VMS", compliance: "Non-compliant" },
   { system: "Network Backbone", component: "TSC", status: "VLAN segregation insufficient", gap: "VLAN segregation insufficient", action: "Needs redesign", compliance: "Partially Compliant" }
 ];
 
 export const ASSESSMENT_SUMMARY: AssessmentItem[] = [
-  { area: "Control Room (Storage / Retention)", status: "Recording system operational", remarks: "Retention period is 16–30 days vs. SIRA requirement of 31 days: insufficient storage capacity for full compliance", compliance: "Non-compliant" },
-  { area: "Control Room (Displays & Workstations)", status: "Video wall and operator stations functional", remarks: "No centralized, tamper-proof logging for NVR/operator/ANPR events; lacks audit trail and event tracking", compliance: "Non-compliant" },
-  { area: "Existing Cluster CCTV System", status: "407 cameras installed", remarks: "All clusters covered; partial coverage of plaza, parking and roads", compliance: "Non-compliant" },
-  { area: "Plaza Coverage (Lifts / Corridors / Roofs)", status: "Cameras installed, coverage incomplete", remarks: "Multiple blind spots observed; critical areas not adequately monitored", compliance: "Non-compliant" },
-  { area: "Plaza Facial Recognition", status: "ID cameras partially installed", remarks: "Several cameras non-functional; facial recognition currently unavailable", compliance: "Non-compliant" },
-  { area: "Parking Clusters & Public Areas", status: "CCTV partially operational", remarks: "Large blind spots: many cameras aged, non-functional, or insufficient resolution for identification", compliance: "Non-compliant" },
-  { area: "Ring Road Perimeter", status: "Cameras installed along perimeter", remarks: "Many cameras non-functional; intermittent network issues affecting live feed and recording reliability", compliance: "Non-compliant" },
-  { area: "ANPR Integration", status: "Gate cameras operational", remarks: "Some ANPR cameras installed but not fully integrated; events not centrally logged; limited automation for access control", compliance: "Non-compliant" }
+  { area: "Control Room (Storage / Retention)", qty: "14 NVR", status: "Recording system operational", remarks: "Retention period is 16–30 days vs. SIRA requirement of 31 days: insufficient storage capacity for full compliance", compliance: "Non-compliant" },
+  { area: "Control Room (Displays & Workstations)", qty: "11 Screen", status: "Video wall and operator stations functional", remarks: "No centralized, tamper-proof logging for NVR/operator/ANPR events; lacks audit trail and event tracking", compliance: "Non-compliant" },
+  { area: "Existing Cluster CCTV System", qty: "256 Cameras", status: "cameras installed", remarks: "All clusters covered", compliance: "Compliant" },
+  { area: "Plaza Coverage (Lifts / Corridors / Roofs)", qty: "118 Cameras", status: "Cameras installed, coverage incomplete", remarks: "Multiple blind spots observed; critical areas not adequately monitored", compliance: "Non-compliant" },
+  { area: "Plaza Facial Recognition", qty: "08 Cameras", status: "ID cameras partially installed", remarks: "All cameras non-functional; facial recognition currently unavailable", compliance: "Non-compliant" },
+  { area: "Parking Clusters & Public Areas", qty: "14 cameras", status: "CCTV partially operational", remarks: "Large blind spots: many cameras aged, non-functional, or insufficient resolution for identification", compliance: "Non-compliant" },
+  { area: "Ring Road Perimeter", qty: "14 cameras", status: "Cameras installed along perimeter", remarks: "Many cameras non-functional; intermittent network issues affecting live feed and recording reliability", compliance: "Non-compliant" },
+  { area: "ANPR Integration", qty: "23 Cameras", status: "Gate cameras operational", remarks: "Some ANPR cameras installed but not fully integrated; events not centrally logged; limited automation for access control", compliance: "Non-compliant" }
 ];
 
 export const ACCESS_CONTROL_SUMMARY: AccessControlSummary[] = [
-  { location: "Residential Blocks (A–F) – Entrances", status: "Standalone locks or no system installed", remarks: "No centralized monitoring; no event logging; emergency override buttons missing" },
-  { location: "Residential Blocks – Staircases, Roofs, ELV Rooms", status: "No system installed", remarks: "No ACSS; no audit trail; no emergency provisions; non-compliant for critical internal areas" },
-  { location: "Swimming Pools, Gym Hall, Dog Park", status: "Standalone systems; partial functionality", remarks: "Not integrated with CCTV; no event logs; emergency buttons missing; some devices malfunctioning" },
-  { location: "Football & Basketball Stadiums", status: "Standalone systems; variable functionality", remarks: "No centralized monitoring; no logging; non-compliant" },
-  { location: "Substation & Block F Service Rooms", status: "No system installed", remarks: "Critical infrastructure lacks ACSS, logging, and emergency controls" },
-  { location: "Road Main Entrance & Parking (Gate Barriers)", status: "Barriers operational but standalone", remarks: "No ACSS integration; manual operation required; no RFID; no logging; no safety warnings" }
+  { location: "Residential Blocks (A–F) – Entrances", qty: "04 ACS", status: "Standalone locks or no system installed", remarks: "No centralized monitoring; no event logging; emergency override buttons missing" },
+  { location: "Residential Blocks – Staircases, Roofs, ELV Rooms", qty: "00 ACS", status: "No system installed", remarks: "No ACSS; no audit trail; no emergency provisions; non-compliant for critical internal areas" },
+  { location: "Swimming Pools, Gym Hall, Dog Park", qty: "05 ACS", status: "Standalone systems; partial functionality", remarks: "Not integrated with CCTV; no event logs; emergency buttons missing; some devices malfunctioning" },
+  { location: "Football & Basketball Stadiums", qty: "02 ACS", status: "Standalone systems; variable functionality", remarks: "No centralized monitoring; no logging; non-compliant" },
+  { location: "Substation & Block F Service Rooms", qty: "00 ACS", status: "No system installed", remarks: "Critical infrastructure lacks ACSS, logging, and emergency controls" },
+  { location: "Road Main Entrance & Parking (Gate Barriers)", qty: "00 ACS", status: "Barriers operational but standalone", remarks: "No ACSS integration; manual operation required; no RFID; no logging; no safety warnings" }
 ];
 
 export const ISSUES: Issue[] = [
@@ -418,10 +418,11 @@ export const BOQ_DATA: BOQItem[] = [
 ];
 
 export const CCTV_DISTRIBUTION_CHART = [
-  { name: 'Plaza Area', value: 32, fill: '#10b981' },
-  { name: 'Parking Areas', value: 77, fill: '#0ea5e9' },
-  { name: 'Ring Road Perimeter', value: 64, fill: '#f59e0b' },
-  { name: 'Control Room/Other', value: 11, fill: '#8b5cf6' }
+  { name: 'Plaza Area', value: 126, fill: '#10b981' },
+  { name: 'Existing Cluster', value: 256, fill: '#0ea5e9' },
+  { name: 'Parking Areas', value: 14, fill: '#f59e0b' },
+  { name: 'Ring Road', value: 14, fill: '#8b5cf6' },
+  { name: 'ANPR Integration', value: 23, fill: '#ec4899' }
 ];
 
 export const PHASES: Phase[] = [
