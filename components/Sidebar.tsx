@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { NAVIGATION, PROPOSAL_METADATA } from '../constants';
 import CompanyLogo from './CompanyLogo';
@@ -41,9 +40,9 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection, onNavigate }) => {
       </nav>
 
       <div className="p-6 border-t border-slate-800">
-        <p className="text-[10px] text-slate-500 uppercase tracking-widest mb-2">Lead Engineer</p>
+        <p className="text-[10px] text-slate-500 uppercase tracking-widest mb-2">Lead</p>
         <p className="text-sm font-semibold text-slate-300">{PROPOSAL_METADATA.preparedBy}</p>
-        <p className="text-[10px] text-slate-500 mt-1 uppercase tracking-tighter">Certified SIRA Consultant</p>
+        <p className="text-[10px] text-slate-500 mt-1 uppercase tracking-tighter">ELV Engineer</p>
       </div>
     </div>
   );

@@ -100,4 +100,5 @@ export interface TechnicalDrawing {
   drawingNo: string;
   description: string;
   imageUrl: string;
+  fileUrl?: string;
 }

@@ -97,7 +97,7 @@ const DrawingModal: React.FC<{ drawing: TechnicalDrawing | null; onClose: () => 
           <p className="text-sm text-slate-400 max-w-2xl">{drawing.description}</p>
           <div className="flex gap-4">
             <button 
-              onClick={() => window.open(drawing.imageUrl, '_blank')}
+              onClick={() => window.open(drawing.fileUrl || drawing.imageUrl, '_blank')}
               className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-6 py-2.5 rounded-xl font-bold transition-all shadow-lg shadow-emerald-900/20"
             >
               <Download size={18} /> Download High-Res
@@ -125,12 +125,12 @@ const AIDiagramGenerator: React.FC = () => {
     try {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       const response = await ai.models.generateContent({
-        model: 'gemini-2.5-flash-image',
+        model: 'gemini-3-pro-image-preview',
         contents: {
-          parts: [{ text: `${prompt}. Style: technical engineering blueprint, architectural 3D render, dark tech aesthetic, professional, clean lines, high contrast, labeled components.` }]
+          parts: [{ text: `${prompt}. Style: technical blueprint, architectural 3D render, dark tech aesthetic, professional, clean lines, high contrast, labeled components.` }]
         },
         config: {
-          imageConfig: { aspectRatio: "16:9" }
+          imageConfig: { aspectRatio: "16:9", imageSize: "1K" }
         }
       });
 
@@ -158,7 +158,7 @@ const AIDiagramGenerator: React.FC = () => {
               <div className="p-2 bg-emerald-500/20 rounded-lg">
                 <Wand2 size={24} className="text-emerald-400" />
               </div>
-              <h4 className="text-2xl font-bold text-white">AI System Architect</h4>
+              <h4 className="text-2xl font-bold text-white">AI Visualizer</h4>
             </div>
             <p className="text-sm text-slate-400 leading-relaxed mb-6">
               Use Gemini AI to generate conceptual system diagrams for the proposal. Select an example or enter a custom prompt.
@@ -196,7 +196,7 @@ const AIDiagramGenerator: React.FC = () => {
             className="flex items-center gap-3 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white px-8 py-4 rounded-2xl font-black transition-all w-full justify-center shadow-lg shadow-emerald-900/20 active:scale-[0.98]"
           >
             {generating ? <Activity className="animate-spin" size={20} /> : <Sparkles size={20} />}
-            {generating ? 'Architecting Visual...' : 'Generate Architecture Diagram'}
+            {generating ? 'Visualizing...' : 'Generate Architecture Diagram'}
           </button>
         </div>
 
@@ -318,7 +318,7 @@ const App: React.FC = () => {
                <div className="h-0.5 w-32 bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-50"></div>
             </div>
             <div className="inline-block px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-semibold mb-6 tracking-wider uppercase">
-              Official Engineering Proposal
+              Official Proposal
             </div>
             <h1 className="text-6xl md:text-8xl font-bold mb-6 tracking-tight">
               CCTV & ELV Systems <br/>
@@ -329,7 +329,7 @@ const App: React.FC = () => {
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto border-t border-slate-800 pt-12">
               <div className="text-left"><p className="text-xs text-slate-500 uppercase tracking-widest mb-1">Prepared For</p><p className="font-semibold text-slate-200">The Sustainable City</p></div>
-              <div className="text-left"><p className="text-xs text-slate-500 uppercase tracking-widest mb-1">Lead Engineer</p><p className="font-semibold text-slate-200">Eng. Mosbah Rama</p></div>
+              <div className="text-left"><p className="text-xs text-slate-500 uppercase tracking-widest mb-1">Lead</p><p className="font-semibold text-slate-200">{PROPOSAL_METADATA.preparedBy}</p></div>
               <div className="text-left"><p className="text-xs text-slate-500 uppercase tracking-widest mb-1">Compliance</p><p className="font-semibold text-slate-200">SIRA STR-2024</p></div>
               <div className="text-left"><p className="text-xs text-slate-500 uppercase tracking-widest mb-1">Date Issued</p><p className="font-semibold text-slate-200">Dec 2025</p></div>
             </div>
@@ -365,7 +365,7 @@ const App: React.FC = () => {
           </div>
         </SectionWrapper>
 
-        <SectionWrapper id="compliance" title="Regulatory Framework" subtitle="Ensuring adherence to mandatory local and international security engineering standards.">
+        <SectionWrapper id="compliance" title="Regulatory Framework" subtitle="Ensuring adherence to mandatory local and international security standards.">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="bg-slate-900/50 border border-slate-800 p-8 rounded-3xl relative overflow-hidden group">
               <h3 className="text-2xl font-bold mb-8 flex items-center gap-3"><ShieldCheck className="text-emerald-400" /> SIRA Regulations</h3>
@@ -376,7 +376,7 @@ const App: React.FC = () => {
                   { code: 'STR-ANPR-2024', label: 'LPR/ANPR Compliance' },
                   { code: 'STR-ACSS-2024', label: 'Access Control Standards' },
                   { code: 'STR-NET-2024', label: 'Security Network Architecture' },
-                  { code: 'SIRA PS-02', label: 'General System Guidelines' }
+                  { code: 'SIRA PS-02', label: 'General Security System Guidelines' }
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-4">
                     <div className="text-emerald-500 font-mono text-xs font-bold pt-1 min-w-[120px]">{item.code}</div>
@@ -718,14 +718,14 @@ const App: React.FC = () => {
                <h4 className="text-2xl font-bold mb-8 flex items-center gap-3"><Zap className="text-emerald-400" /> Summary of Required Enhancements</h4>
                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {[
-                    "Replace outdated cameras with SIRA-approved 2MP/4MP/8MP models",
+                    "Replace outdated cameras with SIRA-approved models",
                     "Add new cameras to achieve full coverage",
                     "Upgrade storage to meet 30-day retention",
                     "Deploy new ANPR cameras and safety accessories",
                     "Upgrade access control controllers & monitoring sensors",
                     "Establish dedicated Surveillance Network (Security VLAN)",
                     "Upgrade Control Room with new VMS server + video wall",
-                    "Provide full BOQ for each subsystem (CCTV, ACSS, ANPR, Network, Control Room)"
+                    "Provide full BOQ for each subsystem"
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-3 p-4 bg-slate-900/50 rounded-xl border border-white/5 shadow-lg">
                        <CheckCircle className="text-emerald-500" size={18} />
@@ -737,7 +737,7 @@ const App: React.FC = () => {
           </div>
         </SectionWrapper>
 
-        <SectionWrapper id="visualizer" title="AI System Visualization" subtitle="Harness Gemini Generative AI to visualize complex ELV system architectures in real-time.">
+        <SectionWrapper id="visualizer" title="AI Visualizer" subtitle="Harness Gemini Generative AI to visualize complex ELV system architectures in real-time.">
            <AIDiagramGenerator />
         </SectionWrapper>
 
@@ -878,12 +878,14 @@ const App: React.FC = () => {
                   >
                     <Eye size={14} /> View
                   </button>
-                  <button 
-                    onClick={() => window.open(doc.imageUrl, '_blank')}
+                  <a 
+                    href={doc.fileUrl || doc.imageUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex-1 flex items-center justify-center gap-2 bg-emerald-600/10 hover:bg-emerald-600/20 text-emerald-400 py-2.5 rounded-xl text-xs font-bold transition-all border border-emerald-500/20"
                   >
                     <Download size={14} /> PDF
-                  </button>
+                  </a>
                 </div>
               </div>
             ))}
@@ -896,10 +898,13 @@ const App: React.FC = () => {
             <div>
               <h4 className="text-2xl font-bold mb-2">Full Document Package</h4>
               <p className="text-slate-400 max-w-2xl mb-6">
-                Download the complete set of technical submittals, including full-resolution SIRA layouts, detailed network logic, and site acceptance test protocols.
+                Download the complete set of technical submittals, including full-resolution SIRA layouts and site acceptance protocols.
               </p>
-              <button className="bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-3 rounded-2xl font-black transition-all shadow-lg shadow-emerald-900/20 flex items-center gap-3 active:scale-[0.98]">
-                <FileText size={20} /> Download Master Reference PDF (142 MB)
+              <button 
+                onClick={() => window.open("https://drive.google.com/file/d/10z2M0WXHRvK4qPbtYrD64Az0ASIlArZw/view?usp=drive_link", "_blank")}
+                className="bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-3 rounded-2xl font-black transition-all shadow-lg shadow-emerald-900/20 flex items-center gap-3 active:scale-[0.98]"
+              >
+                <FileText size={20} /> Download Master Reference PDF
               </button>
             </div>
           </div>
@@ -946,19 +951,6 @@ const App: React.FC = () => {
                   </div>
                   
                   <div className="flex items-center gap-4">
-                    {/* Progress Indicator */}
-                    <div className="hidden sm:flex flex-col items-end gap-1.5 mr-4">
-                      <div className="flex justify-between w-32 text-[9px] uppercase font-bold text-slate-500 tracking-tighter">
-                        <span>Phase Load</span>
-                        <span>{Math.floor(Math.random() * 40) + 60}%</span>
-                      </div>
-                      <div className="w-32 h-1.5 bg-slate-800 rounded-full overflow-hidden">
-                        <div 
-                          className="h-full bg-emerald-500/80 rounded-full transition-all duration-1000"
-                          style={{ width: expandedRoadmapPhase === idx ? '85%' : '0%' }}
-                        ></div>
-                      </div>
-                    </div>
                     <div className={`p-2 rounded-xl transition-all duration-300 ${
                       expandedRoadmapPhase === idx ? 'bg-emerald-500/20 text-emerald-400 rotate-180' : 'bg-slate-800 text-slate-500'
                     }`}>
@@ -1019,20 +1011,6 @@ const App: React.FC = () => {
               </div>
             ))}
           </div>
-
-          <div className="mt-16 flex flex-col md:flex-row items-center justify-center gap-8 text-center md:text-left border-t border-slate-900 pt-16">
-            <div className="flex -space-x-4">
-              {[1, 2, 3, 4].map(i => (
-                <div key={i} className="w-12 h-12 rounded-full border-2 border-slate-950 bg-slate-800 flex items-center justify-center overflow-hidden">
-                  <img src={`https://i.pravatar.cc/150?u=jeet${i}`} alt="Engineer" className="w-full h-full object-cover" />
-                </div>
-              ))}
-            </div>
-            <div>
-              <p className="text-slate-300 font-bold">24/7 Deployment Team Ready</p>
-              <p className="text-sm text-slate-500">Dedicated project manager and certified SIRA site engineers assigned to TSC.</p>
-            </div>
-          </div>
         </SectionWrapper>
 
         <SectionWrapper id="benefits" title="Final Recommendation" subtitle="Ensuring safety, efficiency, and future-readiness for TSC.">
@@ -1046,7 +1024,7 @@ const App: React.FC = () => {
               </div>
               <div className="bg-slate-900 p-8 rounded-2xl border-t-4 border-emerald-500">
                 <h3 className="text-xl font-bold mb-4">Strategic Value</h3>
-                <p className="text-slate-400 leading-relaxed mb-6">The proposed ELV modernization program ensures that <span className="text-slate-100">The Sustainable City</span> remains a leader in urban sustainability and security. By integrating advanced 8MP optics with enterprise-grade AI-ready storage, we provide a platform ready for the smart city innovations of 2030 and beyond.</p>
+                <p className="text-slate-400 leading-relaxed mb-6">The proposed upgrade ensures that <span className="text-slate-100">The Sustainable City</span> remains a leader in urban sustainability and security. By integrating advanced optics with enterprise-grade storage, we provide a platform ready for the smart city innovations of 2030 and beyond.</p>
                 <button onClick={() => alert("Printing Full Technical Specs PDF...")} className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-6 py-3 rounded-xl font-bold transition-all"><ExternalLink size={18} /> Download Detailed Technical Specs</button>
               </div>
             </div>
@@ -1055,10 +1033,10 @@ const App: React.FC = () => {
                 <div className="bg-slate-950 p-10 rounded-[calc(1.5rem-2px)] text-center">
                   <div className="w-20 h-20 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-6"><ShieldCheck size={40} className="text-emerald-400" /></div>
                   <h3 className="text-3xl font-bold mb-4">Ready for SIRA Approval?</h3>
-                  <p className="text-slate-400 mb-8 leading-relaxed">This proposal is fully vetted for 2024 compliance. Contact our engineering team to finalize the Site Survey and begin Phase 1 deployment.</p>
+                  <p className="text-slate-400 mb-8 leading-relaxed">This proposal is fully vetted for 2024 compliance. Contact our team to finalize the Site Survey and begin Phase 1 deployment.</p>
                   <div className="space-y-4">
                     <p className="text-xs text-slate-500 uppercase tracking-[0.2em] font-bold">Contact Representative</p>
-                    <p className="text-xl font-bold text-slate-100">Eng. Mosbah Rama</p>
+                    <p className="text-xl font-bold text-slate-100">{PROPOSAL_METADATA.preparedBy}</p>
                     <p className="text-emerald-400 font-mono text-sm">JEET Integrated Technology</p>
                   </div>
                 </div>

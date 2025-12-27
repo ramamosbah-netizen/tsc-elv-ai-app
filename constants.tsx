@@ -23,7 +23,7 @@ export const PROPOSAL_METADATA = {
   title: "CCTV & ELV Systems Upgrade Proposal",
   client: "The Sustainable City (TSC) – Dubai",
   preparedFor: "The Sustainable City",
-  preparedBy: "Eng. Mosbah Rama",
+  preparedBy: "Mosbah Rama",
   company: "JEET Integrated Technology",
   date: "December 2025",
   version: "V1.0"
@@ -32,51 +32,66 @@ export const PROPOSAL_METADATA = {
 export const TECHNICAL_DRAWINGS: TechnicalDrawing[] = [
   { 
     id: '1', 
-    title: 'CCTV System Plaza Assessment', 
+    title: 'CCTV System PLAZA Assessment (AS-Built)', 
     type: 'As-Built', 
-    drawingNo: 'P00-PLZ', 
-    description: 'Comprehensive layout of current plaza camera locations and coverage arcs.',
-    imageUrl: 'https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=1200' 
+    drawingNo: 'P00-PLZ-ASB', 
+    description: 'Comprehensive field audit showing existing camera placements and coverage gaps in the main Plaza area.',
+    imageUrl: 'https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=1200',
+    fileUrl: 'https://drive.google.com/file/d/1hyRpSCpeOjLcrykPYgVGkEaj81dLSgtw/view?usp=drive_link'
   },
   { 
     id: '2', 
-    title: 'TSC Parking CCTV Master Plan', 
-    type: 'Master Plan', 
-    drawingNo: 'P00-PRK', 
-    description: 'Proposed coverage strategy for all residential and visitor parking zones.',
-    imageUrl: 'https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&q=80&w=1200'
+    title: 'PLAZA Blocks A-F CCTV Upgrade (TO-BE)', 
+    type: 'To-Be', 
+    drawingNo: 'P00-PLZ-TOB', 
+    description: 'Proposed 4MP/8MP camera distribution for full DORI compliance in Plaza residential and retail blocks.',
+    imageUrl: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=1200',
+    fileUrl: 'https://drive.google.com/file/d/1XG4Y0EYwzJBQdBXiUjgUKSLtqZTyO4HC/view?usp=drive_link'
   },
   { 
     id: '3', 
-    title: 'Ring Road & Green Field CCTV', 
-    type: 'Master Plan', 
-    drawingNo: 'P00-RRD', 
-    description: 'Perimeter security layout covering outer ring roads and landscaping areas.',
-    imageUrl: 'https://images.unsplash.com/photo-1545143333-64859a5438e1?auto=format&fit=crop&q=80&w=1200'
+    title: 'Parking CCTV Master Plan (TO-BE)', 
+    type: 'To-Be', 
+    drawingNo: 'P00-PRK-TOB', 
+    description: 'Full coverage layout for residential and visitor parking clusters with integrated ANPR and automated access control.',
+    imageUrl: 'https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&q=80&w=1200',
+    fileUrl: 'https://drive.google.com/file/d/1lDoKdxB1hydVV4vsFkYG7esL2FYDNrol/view?usp=drive_link'
   },
   { 
     id: '4', 
-    title: 'Security Control Room Layout', 
-    type: 'Layout', 
-    drawingNo: 'P00-SCR', 
-    description: 'Ergonomic design for the modernized central command station.',
-    imageUrl: 'https://images.unsplash.com/photo-1558441138-b412bc510006?auto=format&fit=crop&q=80&w=1200'
+    title: 'Ring Road & Green Field CCTV Layout', 
+    type: 'Master Plan', 
+    drawingNo: 'P00-RRD-TOB', 
+    description: 'Outer perimeter monitoring strategy for the community ring road and common green zones.',
+    imageUrl: 'https://images.unsplash.com/photo-1545143333-64859a5438e1?auto=format&fit=crop&q=80&w=1200',
+    fileUrl: 'https://drive.google.com/file/d/10GbffrvTiS1czABxIbhz6OG6czWiva5C/view?usp=drive_link'
   },
   { 
     id: '5', 
-    title: 'Video Surveillance Schematic (TO-BE)', 
-    type: 'To-Be', 
-    drawingNo: 'P00-TBE', 
-    description: 'Logical network architecture and connectivity for the proposed upgrade.',
-    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200'
+    title: 'Security Control Room Layout Diagram', 
+    type: 'Layout', 
+    drawingNo: 'P00-SCR-LAY', 
+    description: 'Internal ergonomics and equipment placement for the modernized central command station.',
+    imageUrl: 'https://images.unsplash.com/photo-1558441138-b412bc510006?auto=format&fit=crop&q=80&w=1200',
+    fileUrl: 'https://drive.google.com/file/d/1GBZGKHSUJupCZxTWELJI6RK5XqiYxOTJ/view?usp=drive_link'
   },
   { 
     id: '6', 
-    title: 'Video Surveillance Schematic (AS-BUILT)', 
+    title: 'CCTV Network Schematic Diagram (AS-BUILT)', 
     type: 'As-Built', 
-    drawingNo: 'P00-ASB', 
-    description: 'Baseline network schematic of existing infrastructure for migration planning.',
-    imageUrl: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=1200'
+    drawingNo: 'P00-SCH-ASB', 
+    description: 'Baseline logical network architecture showing current cabling and NVR connectivity points.',
+    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200',
+    fileUrl: 'https://drive.google.com/file/d/1tDAwnzBnM3mUHRQY81aT4eCeIcmLhgFG/view?usp=drive_link'
+  },
+  { 
+    id: '7', 
+    title: 'CCTV Network Schematic Diagram (TO-BE)', 
+    type: 'To-Be', 
+    drawingNo: 'P00-SCH-TOB', 
+    description: 'Proposed enterprise-grade redundant Layer-3 architecture with dedicated Security VLANs.',
+    imageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200',
+    fileUrl: 'https://drive.google.com/file/d/1dNFeZAk5QQySyw3NW9AoIfWxIpUJoSAT/view?usp=drive_link'
   }
 ];
 
